@@ -1,0 +1,333 @@
+/* VARIABLES DE COLOR Y CONFIGURACIÓN BASE */
+:root {
+    --bg-sidebar: #0f0a43;
+    --bg-main: #ffffff;
+    --text-dark: #333333;
+    --text-muted: #666666;
+    --btn-blue: #2c93b4;
+    --card-border: #e0e0e0;
+    --accent-green: #2e6f40;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* CONTENEDOR PRINCIPAL EN GRID */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+/* BARRA LATERAL (SIDEBAR) */
+.sidebar {
+    background-color: var(--bg-sidebar);
+    color: #ffffff;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-section img{
+    width: 90px;
+}
+
+
+.logo-section h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+}
+
+.sidebar-menu li {
+    margin-bottom: 25px;
+}
+
+.sidebar-menu a {
+    color: #a4a1ca;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: color 0.3s;
+}
+
+.sidebar-menu a i {
+    font-size: 35px;
+    width: 35px;
+    margin-top: 10px;
+}
+
+.sidebar-menu li.active a,
+.sidebar-menu a:hover {
+    color: #ffffff;
+}
+
+/* CONTENIDO PRINCIPAL */
+.main-content {
+    padding: 20px 40px;
+    position: relative;
+}
+
+/* ENCABEZADO */
+.main-header {
+    background-color: var(--bg-sidebar);
+    margin: -20px -40px 30px -40px;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    color: #a4a1ca;
+    font-size: 1.2rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.user-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.user-role {
+    font-size: 0.75rem;
+    color: #a4a1ca;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* TÍTULOS */
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #555555;
+    margin-bottom: 25px;
+}
+
+/* DASHBOARD GRID */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 30px;
+}
+
+/* SECCIÓN TARJETAS DE ESTADÍSTICAS */
+.stats-cards-container {
+    display: flex;
+    gap: 20px;
+    position: relative; /* Para la línea flotante de fondo */
+    margin-bottom: 35px;
+}
+
+.stat-card {
+    flex: 1;
+    border: 1px solid var(--card-border);
+    border-radius: 25px;
+    padding: 30px 25px;
+    background-color: #ffffff;
+    z-index: 2; /* Posicionar por encima del gráfico */
+}
+
+.stat-card h3 {
+    font-size: 1.1rem;
+    color: #444444;
+    font-weight: 400;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 3.2rem;
+    font-weight: 400;
+    color: #222222;
+    text-align: center;
+}
+
+/* LÍNEA GRÁFICA DECORATIVA (REPLICANDO LA IMAGEN) */
+.chart-line-overlay {
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    width: 62%;
+    height: 50px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.chart-line-overlay svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* PRÓXIMAS ACTIVIDADES */
+.upcoming-activities h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 15px 25px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+}
+
+.activity-icon {
+    font-size: 1.5rem;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.blue-icon {
+    color: #2c93b4;
+}
+
+.activity-details h4 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 4px;
+}
+
+.activity-details p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* SECCIÓN DERECHA: ÚLTIMAS NOTAS */
+.grades-card {
+    border: 1px solid var(--card-border);
+    border-radius: 30px;
+    padding: 30px 25px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.grades-card h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #222222;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.grade-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.grade-name {
+    font-size: 1.05rem;
+    color: #333333;
+    font-weight: 400;
+}
+
+.grade-val-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.grade-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #222222;
+    margin-bottom: 4px;
+}
+
+.grade-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* BOTÓN DESCARGAR PDF */
+.download-pdf-btn {
+    background-color: var(--btn-blue);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: auto; /* Empuja el botón al fondo del contenedor */
+    transition: background-color 0.2s;
+}
+
+.download-pdf-btn:hover {
+    background-color: #237894;
+}
+
+/* RESPONSIVE DESIGN (Para pantallas pequeñas) */
+@media (max-width: 900px) {
+    .dashboard-container {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        display: none; /* Esconder barra lateral en móvil de ser necesario */
+    }
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .chart-line-overlay {
+        display: none; /* Ocultar gráfico decorativo en pantallas pequeñas */
+    }
+}

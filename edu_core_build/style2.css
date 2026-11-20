@@ -1,0 +1,805 @@
+/* ==========================================================================
+   1. RESET GENERAL Y ESTILOS BASE (Mantenidos de tus versiones)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+body {
+    display: flex;
+    background: #f5f5f5;
+    overflow: hidden; /* Evita que la página principal haga scroll */
+}
+
+/* Colores y tamaños que usamos en la página de historial */
+:root {
+    --navy:       #0c0144;
+    --navy-light: #1a2f6e;
+    --teal:       #1eb8d0;
+    --white:      #ffffff;
+    --gray:       #c8d4e8;
+    --gray-dim:   #8a9bb8;
+    --card-bg:    #ffffff;
+    --card-br:    14px;
+    --shadow:     none;
+}
+
+/* ==========================================================================
+   2. SIDEBAR ORIGINAL
+   ========================================================================== */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #0c0144;
+    color: white;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    text-align: left;
+}
+
+.logo img {
+    width: 90px;
+}
+
+.logo-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.menu {
+    list-style: none;
+    padding: 20px;
+}
+
+.menu li {
+    margin: 30px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.menu a:hover {
+    color: #4fc3f7;
+    transform: translateX(5px);
+}
+
+.menu i {
+    font-size: 25px;
+}
+
+.sidebar-network {
+    margin-top: auto;
+    padding: 0 0 10px;
+    z-index: 1;
+    width: 100%;
+}
+
+.sidebar-network svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    cursor: pointer;
+    color: var(--gray-dim);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    transition: background .2s, color .2s;
+    border-left: 3px solid transparent;
+}
+
+.nav-item:hover { background: rgba(255,255,255,.05); color: var(--white); }
+.nav-item.active {
+    color: var(--teal);
+    border-left-color: var(--teal);
+    background: rgba(30,184,208,.08);
+}
+.nav-item svg { flex-shrink: 0; }
+
+/* ==========================================================================
+   3. MAIN & NAVBAR ORIGINAL
+   ========================================================================== */
+.main {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-custom {
+    flex: 0 0 80px;
+    height: 80px;
+    background: #0c0144;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.menu-icon i {
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-info i {
+    font-size: 30px;
+}
+
+.user-info h6 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.user-info p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.user-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--navy-light);
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--teal);
+}
+.user-avatar svg { color: var(--gray); }
+.user-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+.user-role {
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.5px;
+}
+
+.logout-btn {
+    background: none; border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    color: var(--gray);
+    font-size: 30px;
+    text-decoration: none;
+    transition: color .2s, 0.3s;
+}
+.logout-btn:hover { color: #4fc3f7; }
+
+/* ==========================================================================
+   4. CONTENT & TABLES (Otras opciones del dashboard)
+   ========================================================================== */
+.content {
+    padding: 40px;
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
+.title {
+    margin-bottom: 30px;
+    color: #222;
+}
+
+.cards {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.card-box {
+    background: white;
+    width: 260px;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.card-box h3 {
+    font-size: 25px;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.card-box span {
+    font-size: 35px;
+    color: #4fc3f7;
+}
+
+.table-section {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.table-container {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    flex: 1 1 600px;
+    min-width: 300px;
+    overflow: auto;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.table-container table { width: 100%; table-layout: auto; }
+.table-container h3 { margin-bottom: 20px; }
+.table thead { background: #eaeaea; }
+.table th, .table td { padding: 15px; }
+
+/* ==========================================================================
+   5. SECCIÓN HISTORIAL / ESTADÍSTICAS (Mantenido intacto)
+   ========================================================================== */
+.page-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5a6a8a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 28px;
+    padding: 25px;
+    border: 2px solid #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    justify-content: space-between;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--gray-dim);
+    letter-spacing: .4px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 55px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 14px;
+}
+
+.sparkline { width: 100%; height: 60px; }
+
+.notas-card {
+    background: white;
+    border-radius: 30px;
+    padding: 25px;
+    color: rgb(9, 9, 9);
+    border: 2px solid #faf4f4;
+    height: 370px;
+}
+
+.notas-card .card-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--navy);
+}
+
+.nota-row {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.nota-row:last-child { margin-bottom: 0; }
+.nota-name { font-size: 13px; color: var(--gray); }
+.nota-right { text-align: right; }
+.nota-score { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+.nota-date { color: var(--navy); }
+
+.bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 16px;
+}
+
+.actividades-card {
+    background: white;
+    border-radius: 30px;
+    padding: 30px;
+    border: 2px solid #e5e5e5;
+}
+
+.actividades-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: .5px;
+    margin-bottom: 14px;
+}
+
+.activity-box {
+    flex: 0 0 320px;
+    max-width: 320px;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+.activity-box h3 { margin-bottom: 20px; }
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: #eef3fa;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 18px;
+}
+.activity-item:last-child { margin-bottom: 0; border-bottom: none; }
+.activity-icon {
+    width: 36px; height: 36px;
+    background: var(--white);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid #d5e0ef;
+    flex-shrink: 0;
+}
+.activity-name { font-size: 28px; font-weight: 700; color: var(--navy); }
+.activity-date { font-size: 11px; color: var(--gray-dim); margin-top: 2px; }
+.activity-item p { margin-bottom: 5px; font-size: 14px; }
+.activity-item span { font-size: 12px; color: gray; }
+
+.pdf-card {
+    background: transparent;
+    border-radius: var(--card-br);
+    padding: 20px 22px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.btn-pdf {
+    width: 100%;
+    background: #2f98c2;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 22px;
+    cursor: pointer;
+}
+.btn-pdf:hover { background: #17a0b5; transform: translateY(-1px); }
+.btn-pdf:active { transform: translateY(0); }
+
+/* BÚSQUEDA Y OTROS BOTONES */
+.tipo-usuario { display: flex; gap: 15px; margin-bottom: 30px; }
+.btn-tipo { width: auto; padding: 10px 25px; background: white; border: 1px solid #dcdcdc; border-radius: 10px; color: #333; font-size: 15px; cursor: pointer; }
+.btn-tipo:hover { background: #f2f2f2; }
+
+.search-box { width: 70%; height: 50px; background: #2d94b8; border-radius: 12px; display: flex; align-items: center; overflow: hidden; padding-right: 10px; box-shadow: 0px 2px 6px rgba(0,0,0,0.1); }
+.search-box input { width: calc(100% - 60px); height: 100%; border: none; outline: none; padding-left: 19px; font-size: 15px; }
+.search-box button { width: 50px; height: 40px; border: none; background: transparent; cursor: pointer; }
+.search-box button i { font-size: 22px; position: relative; top: -20px; left: 5px; }
+
+/* ==========================================================================
+   6. CONFIGURACIÓN EXACTA PARA LA PANTALLA ASIGNAR NOTA (Según Imagen)
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 820px;
+    background: white;
+    padding: 40px;
+    border-radius: 8px; /* Bordes suaves estilo tarjeta de tu maqueta */
+    margin: 10px 0 30px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: block; 
+}
+
+.form-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0c0144;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+.form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Separación vertical exacta entre inputs */
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 0px; /* Manejado por el gap de form-body */
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    color: #222222;
+    font-weight: 500;
+}
+
+/* Campos de Texto y Listas en Gris Claro */
+select, input {
+    width: 100%;
+    height: 54px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 10px;
+    background: #e9e9e9; /* El color gris exacto de fondo en tu foto */
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Modificación de la flecha del Selector a '^' (Invertida como en la imagen) */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'><path fill='%23000000' d='M7 0L14 10H0z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    padding-right: 50px;
+}
+
+/* Validaciones y Alertas */
+.nota-container { position: relative; }
+
+.mensaje {
+    margin-top: 4px;
+    color: #6aa84f;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mensaje::before {
+    content: '✓';
+    color: #6aa84f;
+    font-weight: 700;
+}
+
+/* Botón "GUARDAR CALIFICACIÓN" Calcado */
+.btn-guardar {
+    width: 100%;
+    height: 56px;
+    border: none;
+    border-radius: 10px;
+    background: #2d94b8; /* Azul cerúleo idéntico al renderizado */
+    color: white;
+    font-size: 18px;
+    font-weight: normal;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 0;
+    display: block;
+    transition: background 0.2s;
+}
+
+.btn-guardar:hover {
+    background: #237894;
+}
+
+.message-box {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 12px 18px;
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    font-weight: 600;
+    z-index: 9999;
+}
+
+.btn-login{
+    background: #18c1d6;
+    border: none;
+    height: 48px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+.btn-login:hover{
+    background: #0ea5b7;
+    color: white;
+}
+
+
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+/* Contenedor del selector */
+.selector-cantidad {
+    display: flex;
+    align-items: center;
+    width: 160px;
+    height: 48px;
+    background-color: #e9e9e9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* SELECTOR DE CANTIDAD */
+.cantidad {
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 45px;
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f1f1f1;
+    margin-bottom: 20px;
+}
+
+.cantidad button {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    border: none;
+    background: #f1f1f1;
+    color: #333;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cantidad button:hover {
+    background: #dcdcdc;
+}
+
+.cantidad input {
+    width: 60px !important;
+    height: 45px;
+    padding: 0;
+    border: none;
+    border-left: 1px solid #d0d0d0;
+    border-right: 1px solid #d0d0d0;
+    border-radius: 0;
+    background: white;
+    text-align: center;
+    font-size: 17px;
+    outline: none;
+}
+
+
+
+
+/* Quitar flechas del input number */
+.cantidad input::-webkit-inner-spin-button,
+.cantidad input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* ==========================================================================
+   7. AJUSTES RESPONSIVOS COMPLETA
+   ========================================================================== */
+/* =========================================================
+   RESPONSIVE EDU-CORE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    body {
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 220px !important;
+        height: 100vh !important;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+    }
+
+    /* MAIN */
+
+    .main {
+        margin-left: 220px !important;
+        width: calc(100% - 220px) !important;
+        min-height: 100vh;
+    }
+
+    /* NAVBAR */
+
+    .navbar-custom {
+        width: 100%;
+        height: 70px;
+        padding: 0 20px;
+    }
+
+    /* CONTENT */
+
+    .content {
+        width: 100%;
+        padding: 20px;
+        overflow: visible;
+    }
+
+    /* CARDS */
+
+    .cards {
+        flex-direction: column;
+    }
+
+    .card-box {
+        width: 100%;
+    }
+
+    /* TABLES */
+
+    .table-section {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+
+/* =========================================================
+   CELULARES
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* SIDEBAR OCULTO */
+
+    .sidebar {
+        width: 220px !important;
+        transform: translateX(-100%);
+    }
+
+    /* ABRIR SIDEBAR CON EL BOTÓN */
+
+    .sidebar.close {
+        transform: translateX(0);
+    }
+
+    /* MAIN OCUPA TODA LA PANTALLA */
+
+    .main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    /* NAVBAR */
+
+    .navbar-custom {
+        height: 65px;
+        padding: 0 15px;
+    }
+
+    /* CONTENT */
+
+    .content {
+        padding: 15px;
+    }
+
+    /* BUSCADOR */
+
+    .search-container {
+        width: 100%;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    /* EDITAR NOTAS */
+
+    .card-edit {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    /* ASIGNAR NOTA */
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    /* TABLAS */
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+}
