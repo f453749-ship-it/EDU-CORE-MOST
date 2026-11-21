@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. RESET GENERAL Y ESTILOS BASE (Mantenidos de tus versiones)
+1. RESET GENERAL Y ESTILOS BASE (Mantenidos de tus versiones)
    ========================================================================== */
 * {
     margin: 0;
@@ -7,9 +7,6 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-
-
-
 
 body {
     display: flex;
@@ -31,7 +28,7 @@ body {
 }
 
 /* ==========================================================================
-   2. SIDEBAR ORIGINAL
+2. SIDEBAR ORIGINAL
    ========================================================================== */
 .sidebar {
     width: 260px;
@@ -129,7 +126,7 @@ body {
 .nav-item svg { flex-shrink: 0; }
 
 /* ==========================================================================
-   3. MAIN & NAVBAR ORIGINAL
+3. MAIN & NAVBAR ORIGINAL
    ========================================================================== */
 .main {
     margin-left: 260px;
@@ -208,7 +205,7 @@ body {
 .logout-btn:hover { color: #4fc3f7; }
 
 /* ==========================================================================
-   4. CONTENT & TABLES (Otras opciones del dashboard)
+4. CONTENT & TABLES (Otras opciones del dashboard)
    ========================================================================== */
 .content {
     padding: 40px;
@@ -270,7 +267,7 @@ body {
 .table th, .table td { padding: 15px; }
 
 /* ==========================================================================
-   5. SECCIÓN HISTORIAL / ESTADÍSTICAS (Mantenido intacto)
+5. SECCIÓN HISTORIAL / ESTADÍSTICAS (Mantenido intacto)
    ========================================================================== */
 .page-title {
     font-family: 'Rajdhani', sans-serif;
@@ -430,13 +427,57 @@ body {
 .btn-tipo { width: auto; padding: 10px 25px; background: white; border: 1px solid #dcdcdc; border-radius: 10px; color: #333; font-size: 15px; cursor: pointer; }
 .btn-tipo:hover { background: #f2f2f2; }
 
-.search-box { width: 70%; height: 50px; background: #2d94b8; border-radius: 12px; display: flex; align-items: center; overflow: hidden; padding-right: 10px; box-shadow: 0px 2px 6px rgba(0,0,0,0.1); }
-.search-box input { width: calc(100% - 60px); height: 100%; border: none; outline: none; padding-left: 19px; font-size: 15px; }
-.search-box button { width: 50px; height: 40px; border: none; background: transparent; cursor: pointer; }
-.search-box button i { font-size: 22px; position: relative; top: -20px; left: 5px; }
+.search-box {
+    width: 70%;
+    height: 50px;
+    background: #2d94b8;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    padding-right: 0;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-box input {
+    flex: 1 1 auto;
+    width: auto;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 0 18px;
+    font-size: 15px;
+    border-radius: 12px 0 0 12px;
+    background: #ffffff;
+}
+
+.search-box button {
+    flex: 0 0 56px;
+    width: 56px;
+    height: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.search-box button i {
+    position: static;
+    top: 0;
+    left: 0;
+    transform: none;
+    font-size: 22px;
+    line-height: 1;
+    color: #ffffff;
+}
 
 /* ==========================================================================
-   6. CONFIGURACIÓN EXACTA PARA LA PANTALLA ASIGNAR NOTA (Según Imagen)
+6. CONFIGURACIÓN EXACTA PARA LA PANTALLA ASIGNAR NOTA (Según Imagen)
    ========================================================================== */
 .container {
     width: 100%;
@@ -576,8 +617,6 @@ select {
     color: white;
 }
 
-
-
 .campo {
     margin-bottom: 20px;
 }
@@ -644,8 +683,26 @@ select {
     outline: none;
 }
 
+.editar {
+    background: #18c1d6;
+    border: none;
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    transition: 0.3s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 15px;
+}
 
-
+.editar:hover {
+    background: #12a3b5;
+}
 
 /* Quitar flechas del input number */
 .cantidad input::-webkit-inner-spin-button,
@@ -653,8 +710,9 @@ select {
     -webkit-appearance: none;
     margin: 0;
 }
+
 /* ==========================================================================
-   7. AJUSTES RESPONSIVOS COMPLETA
+7. AJUSTES RESPONSIVOS COMPLETA
    ========================================================================== */
 /* =========================================================
    RESPONSIVE EDU-CORE
@@ -728,7 +786,6 @@ select {
         overflow-x: auto;
     }
 }
-
 
 /* =========================================================
    CELULARES
