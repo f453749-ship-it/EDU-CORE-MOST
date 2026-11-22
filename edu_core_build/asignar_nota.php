@@ -55,6 +55,20 @@ while ($a = $asignaciones->fetch_assoc()) {
     }
 }
 
+// menu desplegable para asignar nota y poder seleccionar diferente materia y diferente grado
+$materiasTodas = [];
+$resM = $conexion->query("SELECT id_materia, nombre FROM materias ORDER BY nombre ASC");
+while ($f = $resM->fetch_assoc()) {
+    $materiasTodas[$f['id_materia']] =  $f['nombre'];
+}
+
+$gradosTodos = [];
+$resG = $conexion->query("SELECT id_grado, nombre FROM grados ORDER BY id_grado ASC");
+while ($f = $resG->fetch_assoc()) {
+    $gradosTodos[$f['id_grado']] = $f['nombre'];
+}
+// fin
+
 /* =========================================
    PROCESAR EL FORMULARIO
    ========================================= */
@@ -221,9 +235,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <div class="campo">
                             <label for="materia_ui">Materia</label>
-                            <select id="materia_ui" required onchange="actualizarGrados()">
+                            <select id="materia_ui" name="materia" required>
                                 <option value="">Seleccione una materia</option>
-                                <?php foreach ($materiasUnicas as $idMateria => $nombreMateria): ?>
+                                <?php foreach ($materiasTodas as $idMateria => $nombreMateria): ?>
                                     <option value="<?php echo $idMateria; ?>"><?php echo h($nombreMateria); ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -231,8 +245,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <div class="campo">
                             <label for="grado_ui">Grado</label>
-                            <select id="grado_ui" required onchange="actualizarEstudiantes()">
-                                <option value="">Primero seleccione una materia</option>
+                            <select id="grado_ui" name="grado" required onchange="actualizarEstudiantes()">
+                             <option value="">Seleccione un grado</option>
+                                <?php foreach ($gradosTodos as $iGrado => $nombreGrado): ?>
+                                    <option value="<?php echo $idGrado; ?>"><?php echo h($nombreGrado); ?></option>
+                                <?php endforeach; ?>   
                             </select>
                         </div>
 
@@ -273,33 +290,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         const asignaciones = <?php echo json_encode($asignacionesArr); ?>;
         const estudiantesPorGrado = <?php echo json_encode($estudiantesPorGrado); ?>;
 
-        // 1) Al elegir una MATERIA, se llenan los GRADOS donde el docente dicta esa materia
-        function actualizarGrados() {
-            const idMateria = document.getElementById('materia_ui').value;
-            const selectGrado = document.getElementById('grado_ui');
-            selectGrado.innerHTML = '';
-
-            const opciones = asignaciones.filter(function(a) {
-                return String(a.id_materia) === idMateria;
-            });
-
-            if (idMateria === '' || opciones.length === 0) {
-                const op = document.createElement('option');
-                op.value = '';
-                op.textContent = 'Primero seleccione una materia';
-                selectGrado.appendChild(op);
-            } else {
-                opciones.forEach(function(a) {
-                    const op = document.createElement('option');
-                    op.value = a.id_grado;
-                    op.textContent = a.grado;
-                    op.setAttribute('data-asignacion', a.id_asignacion);
-                    selectGrado.appendChild(op);
-                });
-            }
-
-            actualizarEstudiantes();
-        }
 
         // 2) Al elegir (o recalcular) el GRADO, se fija el id_asignacion real y se cargan los ESTUDIANTES
         function actualizarEstudiantes() {
