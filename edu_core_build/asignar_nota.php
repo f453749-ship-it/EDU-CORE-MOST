@@ -17,9 +17,7 @@ $idDocente = $_SESSION["id_usuario"];
 $mensaje = "";
 $error = "";
 
-/* =========================================
-   ASIGNACIONES (materia + grado) DEL DOCENTE
-   ========================================= */
+
 $sqlAsig = "SELECT dmg.id_asignacion, dmg.id_materia, m.nombre AS materia, g.nombre AS grado, dmg.id_grado
             FROM docente_materia_grado dmg
             JOIN materias m ON m.id_materia = dmg.id_materia
@@ -55,6 +53,7 @@ while ($a = $asignaciones->fetch_assoc()) {
     }
 }
 
+<<<<<<< HEAD
 // menu desplegable para asignar nota y poder seleccionar diferente materia y diferente grado
 $materiasTodas = [];
 $resM = $conexion->query("SELECT id_materia, nombre FROM materias ORDER BY nombre ASC");
@@ -72,6 +71,9 @@ while ($f = $resG->fetch_assoc()) {
 /* =========================================
    PROCESAR EL FORMULARIO
    ========================================= */
+=======
+
+>>>>>>> feature/luisa
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $idAsignacion = intval($_POST["id_asignacion"]);
@@ -80,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nota         = floatval($_POST["nota"]);
     $fecha        = $_POST["fecha"] !== "" ? $_POST["fecha"] : date("Y-m-d");
 
-    // Verificar que la asignación pertenece a este docente
+    
     $verifAsig = $conexion->prepare("SELECT id_grado FROM docente_materia_grado WHERE id_asignacion = ? AND id_usuario = ?");
     $verifAsig->bind_param("ii", $idAsignacion, $idDocente);
     $verifAsig->execute();
@@ -96,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } else {
 
-        // Buscar si la actividad ya existe (misma asignación, nombre y fecha)
+
         $buscarAct = $conexion->prepare(
             "SELECT id_actividad FROM actividades WHERE id_asignacion = ? AND nombre = ? AND fecha = ?"
         );
@@ -286,7 +288,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <script>
-        // Todas las asignaciones (materia+grado) de este docente, con su id_asignacion real
+       
         const asignaciones = <?php echo json_encode($asignacionesArr); ?>;
         const estudiantesPorGrado = <?php echo json_encode($estudiantesPorGrado); ?>;
 
